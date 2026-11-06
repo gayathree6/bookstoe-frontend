@@ -1,0 +1,218 @@
+Backend
+----------
+-backend of a webapp is the server-side part of the application that users do not directly see.it handle logic,database operations,authentication,APIs,and commucnication between the front-end and database.
+- main responsibilities of backend
+    -server logic
+    -database management
+    -authentication & security
+    -APIs
+    -business logic
+-popular backend technologies: javascript(node js), python, php, java,c#
+    -frameworks:Express.js,NextJS,DJango,Larvel,spring Boot...
+    -Databases used with backend:mongodb,MySql, Postgresql,SQLite,Firebase....
+
+database
+-----------
+-a database is an organized collection of data stored electronically so that it can easily accessed, managed and, updated
+-2 types of database
+  -relational database(SQL Based)
+  -NoSql database
+-3 SQL: Structured query Language -used to interact with relational Databases
+    -Here data are stored as table
+    -row(record): one entry in table indicate one item stored in table
+    -column(field):attribute of data stored in table.
+
+mongodb
+-----------
+-MongoDB is NoSql, document oriented db, that store data in JSON like format(BSON) instead of table
+-Features:
+   -Schema-less(Flexible structure)
+   -scalable
+   -designed for modern application
+
+-key Features
+    -collection:equalent to table in SQL
+    -document:a single record (JSON-like object)
+    -BSON:Binary version of JSON used internally
+    -_id fields:every document has a unique key value
+
+-CRUD operations:
+     -Read: to get documents from collection 
+     -find():used to get all documents, usage collection_name.find(),to query from collection: find(condition), condition should be in object
+     -findOne(condition):used to get single document.
+ -Create: to insert document into the collection
+     -insertOne(document): used to insert on document into a collection,document can be an object.
+     -insertMany([doc1, doc2,..]):used to insert multiple documents at a time into a collection.
+ -Update:to update document
+     -updateOne():to update single document
+      -updateMany():to update multiple document at a time.
+       syntax:updateMany({filter},{update_query:{field1:value1},{field2:value2}})
+    -Delete: to delete document from collection
+       -deleteOne():to delete single document
+       -deleteMany():to delete single document
+ -Query Operators:
+    -comparison: syntax: {field:{comparison_query:value}}
+      ex: #eq,$ne,$gt,$lt,$gte,$lte,$in
+    -Logical: syntax:{logical_query:[{field1:value1},{field2:value2}]}
+        ex:$and, $or, $not
+    -Evaluation:syntax:{field:{evaluation_query:value}}
+       ex:$regex, $text, $where
+    -Additional operators: count(), limit(), sort()
+ Update operators:
+    -Field:$inc,$set,$unset, $rename,$currentData
+    -Array:$pop,$push
+
+-Indexing: used to make data searchinf faster in mongoDB.
+  -why use indexing:Faster find() queries, sorting, improves search fields, Better performance for large data.
+     syntax:db.collection_name.createIndex({fieldName:1})
+
+NODE JSON
+--------------
+-Node.js core=Runtime+ event loop +async +modules + server +API scalable
+
+2. Features
+  -fast performance: it uses v8 engine
+  -Asynchronous& non-blocking: file reading, API requests, Database queries
+  -single threaded with event loop: Asynchronous functions handled smoothly.
+  -scalable
+  -Huge package ecosystem
+  -cross platform
+  -Real-Time communication: oftenused with Socket.IO
+  -Easy API Development
+  -Open source
+  -JSON Friendly
+  -streaming support
+
+3.core concepts in NODE.JSON
+   -Runtime environment:Node.js allows javascript to run outside the browser.
+   -event loop:Node.js uses event loop to handle multiple requests efficiently
+   -Non-blocking I/O: Node.js does not wait for task to finish before starting another
+   -Modules: modules allows us to divide our node.js application into seperate files. each file contain seperate functionality
+       -Built-in modules:http, fs,Path, outside
+       -Common JS (require / module.exports): used to import/ export files.
+       -HTTP Server: create server using http.
+       -Asynchronous programming: callback, promise,async/await
+       -File System: read/write file using fs.
+       -streaming: used to handle large files efficiently
+       -Buffer:temporary memory for binary data. used in file upload, streams, network data
+       -NPM(Node Package Manager): npm is used to install and manage packages.
+       -Global object:nodejs global object containing built-in variables/function. it can used in node app without import/export, ex: console,setTimeout,process...
+       -process: its a nodejs global objects which provides information and control over the current running process in node app.
+         -environment variable: are secret data or configuration of an application, to hold env variables we have to create.
+        env file, it can be accessed via process.env in node app
+
+EXPRESS JS
+-----------------
+1. Express.js is a fast, minimal and flexible web framework for node.js
+2.its uses: 
+    web servers, rest APIs, backend applications, mern stack back ends
+3.use Express.js: easy routing, middleware support, rest API creation, fast development, works with MongoDB, Large Ecosystem.
+
+
+-Authentication and Authorization:
+   -Authentication is the process of verifying the identity of a users
+   -Authorization means checking what permissions a user has after login. performed using JWT(json web token)
+
+
+-middleware: function that runs between the request and response cycle
+  -middleware can 
+    -pass control to the next middleware/controller function
+    -sends response directly
+    -Handle errors
+   - to create middleware:create a function with minimum 3 arguments(req,res,next)
+
+   JWT(json web token)
+   --------------------
+   1.JWT is a secure way to authenticate users and share user data between client and server 
+   2. what is jwt : when user login successfully:
+       -server creates a token using jwt
+       -send token to client
+       -client store token 
+       -client send token with future requests
+   3.JWT structure: it has parts  -Header.payload,Signature
+         -Header: Algorithm+token type
+         -Payload: user data can be stored for future use
+         -signature: used to varify token is validation
+   4.install json webtoken using npm install jsonwebtoken
+   5. create token :use sign method
+   6. verify token : use verify method
+
+   -Multer
+   -----------------
+   1. multer is a node js middleware for handling multipart/formdata
+   2. to use multer :installation: npm i multer
+   3. usage of multer
+     -multer adds a body object and  file or files object to the request body 
+     -the body object contains the values of the text fields of the formdata
+     - the file or files object contains the file uploaded via the format
+     -define storage for uploaded files
+     -it can apply filter as well
+CORS-Cross Origin Resource Sharing
+-----------------------------------
+1. it is a browser security feature that control whether a frntend from one origin can access resources from another origin 
+2. Origin = Protocol +Domain +Protocol
+3. If front end and backend have different origin, browser may block request.
+4. To enable cors
+  -install cors package : npm install cors
+  -use cors in the app
+5. CORS= Permission Systemfor cross-origin browser request.
+
+MVC Architecture
+----------------------------
+it is a software architecture pattern used to seperate an application into three parts, making the code easier to develop, maintain and debug
+MVC stands for Model – View – Controller.
+
+
+MONGOOSE
+-------------------
+1. to connect Node.js with MongoDB, the most common way is using mongoos.
+2. Mongoose is an open source object data modeling(ODM) library for mongoDB. designed for use in async node.js
+3. use 
+   -structured schema based solution  to model application data
+   -built-in validation 
+   -type casting
+   -middleware to simple data handing 
+4.Schema: structure of document stored in a collection 
+   - to create a schema: create an object for schema class of Mongoose
+5.model :it represents the collection in mongoDB and is used to interact with documents in that collection.
+  -to create model use model() method
+
+6. use model for CRUD
+ -create
+   -1. create an object for model, and sve the object in order to available in mongoDB
+   -2. create method to insert document, syntax: model_name.create({key:value.....})
+ -read
+    1. find/findOne/findById
+ -update
+   1.updateOne/updateMany/findByIdAndUpdate
+ -delete
+   1.deleteOne/deleteMany/findByIdAndDelete
+
+
+
+STEPS TO CREATE AN EXPRESS Server
+------------------------------------
+1. Create a folder to hold all files of project.
+2. create project configuration file(package.json) using the command: npm init -y
+3. update package.json file script by start as "node index.js", where index.js is the main entry file of project.
+4.install packages: express,cors, dotenv
+5. create .env file to hold project secrets/configuration data
+6. create .gitignore file to add files/folders to avoid when adding to git
+7. create index.js file where we define  express server
+  -import all packages.
+  -create server using express package 
+  -enable cors in server 
+  -set up port for server app 
+  -startserver to listen client request to that port
+  -resolve api(get request to http://localhost:3000/) using express
+     -syntax: server.httpRequest(url,callback),use callback to define the logic to resolve the request
+8. run the server using node index.js
+
+context API
+   ------------------------------------------------------------
+   - the context api in react is a build-in function used to share data across components without passing props manually at every level.
+   -context api solves props drilling by creating a global-like state accessable anywhere in the component tree 
+   -core concepts
+       -1. createContext (): create a contaxt object
+       -2.provider:wraps components and provide data
+       -3.useContext():used inside components to access context data
